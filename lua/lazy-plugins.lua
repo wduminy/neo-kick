@@ -27,7 +27,9 @@ require('lazy').setup({
 
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
-
+  -- NOTE: my additions start
+  require 'kickstart.plugins.vimtex',
+  -- NOTE: my additions end
   require 'kickstart/plugins/gitsigns',
 
   require 'kickstart/plugins/which-key',
