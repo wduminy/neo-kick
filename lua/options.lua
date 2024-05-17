@@ -5,7 +5,7 @@
 
 -- NOTE: Start my choices
 vim.o.guicursor = 'n-v:hor50,i-o:ver50'
-vim.o.cursorline = 0
+vim.o.cursorline = false
 vim.opt.timeoutlen = 1300
 vim.opt.relativenumber = true
 
