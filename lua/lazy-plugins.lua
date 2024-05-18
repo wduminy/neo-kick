@@ -30,6 +30,7 @@ require('lazy').setup({
   -- NOTE: my additions start; i do not use this method anymore
   -- rather add to ./custom/
   require 'kickstart.plugins.vimtex',
+  require 'kickstart/plugins/treesitter',
   -- NOTE: my additions end
   require 'kickstart/plugins/gitsigns',
 
@@ -48,8 +49,6 @@ require('lazy').setup({
   require 'kickstart/plugins/todo-comments',
 
   require 'kickstart/plugins/mini',
-
-  --  require 'kickstart/plugins/treesitter',
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and

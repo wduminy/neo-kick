@@ -8,6 +8,9 @@ vim.o.cursorline = false
 vim.opt.timeoutlen = 400
 vim.opt.relativenumber = true
 vim.o.linebreak = true
+vim.o.tabstop = 4
+-- rely on treesitter for syntax colouring
+vim.o.syntax = 'off'
 --NOTE: End my choices
 
 -- Make line numbers default
