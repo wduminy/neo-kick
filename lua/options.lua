@@ -1,14 +1,13 @@
 -- [[ Setting options ]]
 -- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+-- NOTE: Press K to see help on an option
 
 -- NOTE: Start my choices
 vim.o.guicursor = 'n-v:hor50,i-o:ver50'
 vim.o.cursorline = false
 vim.opt.timeoutlen = 400
 vim.opt.relativenumber = true
-
+vim.o.linebreak = true
 --NOTE: End my choices
 
 -- Make line numbers default
