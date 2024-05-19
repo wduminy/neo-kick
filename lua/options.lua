@@ -10,6 +10,7 @@ vim.opt.relativenumber = true
 vim.o.linebreak = true
 vim.o.tabstop = 4
 vim.o.exrc = true
+vim.o.hlsearch = false
 -- rely on treesitter for syntax colouring
 vim.o.syntax = 'off'
 --NOTE: End my choices

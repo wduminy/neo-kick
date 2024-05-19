@@ -1,18 +1,35 @@
+local tele_find = function()
+  local line = vim.api.nvim_get_current_line()
+  local cpos = vim.fn.getpos '.' -- current cursorpos
+  local pos = cpos[3] -- select col value
+  local left = string.sub(line, 1, pos)
+  local left_i = string.find(left, '[/{][^/}]*$')
+  local right_i = string.find(line, '[/}]', pos)
+  vim.print(left_i, right_i)
+  if left_i and right_i and right_i > left_i + 1 then
+    local ref_braced = string.sub(line, left_i, right_i)
+    require('telescope.builtin').grep_string {
+      search = '\\label' .. ref_braced,
+    }
+  else
+    vim.print 'Cannot find reference to search'
+  end
+end
 -- I used this as starter: https://github.com/lervag/vimtex?tab=readme-ov-file#installation
+-- TODO: Some investigation is needed to figure out why tabstop=8 for tex files
 return {
   'lervag/vimtex',
   lazy = false, -- we don't want to lazy load VimTeX
   -- tag = "v2.15", -- uncomment to pin to a specific release
   init = function()
-    -- started from here: https://github.com/lervag/vimtex
+    -- the init runs before the plugin loads
+    vim.api.nvim_create_autocmd({ 'Filetype' }, {
+      pattern = 'tex',
+      callback = function()
+        vim.keymap.set('n', '<c-]>', tele_find, { desc = 'VimTex: lookup', buffer = true })
+      end,
+    })
 
-    --[[ 
-" This enables Vim's and neovim's syntax-related features. Without his, some
-" VimTeX features will not work (see ":help vimtex-requirements" for more
-" info).
-syntax enable
-
-  --]]
     vim.g.vimtex_compiler_latexmk = {
       aux_dir = 'out',
       out_dir = 'out',
@@ -37,35 +54,43 @@ syntax enable
     vim.g.vimtex_mappings_prefix = prefix
 
     -- setting some keys: see :h vimtex-default-mappings
-    local mapkey = function(chord, name, desc)
-      vim.keymap.set('n', chord, '<plug>(vimtex-' .. name .. ')', { desc = 'VimTex: ' .. desc })
+    local mapkey4 = function(mode, chord, name, desc)
+      vim.keymap.set(mode, chord, '<plug>(vimtex-' .. name .. ')', { desc = 'VimTex: ' .. desc })
     end
 
-    local mapkey2 = function(chord, desc)
-      mapkey(chord, chord, desc)
+    local nmapk = function(chord, name, desc)
+      mapkey4('n', chord, name, desc)
     end
 
-    -- to remove: ']['
-    mapkey2(']]', 'Next section')
-    mapkey2('[[', 'Previous section')
-    mapkey2('][', 'Ignore')
+    local nmapk2 = function(chord, desc)
+      mapkey4('n', chord, chord, desc)
+    end
+
+    nmapk2(']]', 'Next section')
+    nmapk2('[[', 'Previous section')
+    nmapk2('][', 'Ignore')
 
     local new_prefix = '<localleader>l'
-    local mapkey_p = function(chord, name, desc)
-      mapkey(new_prefix .. chord, name, desc)
+    local xmapp = function(chord, name, desc)
+      mapkey4('x', new_prefix .. chord, name, desc)
+    end
+    local nmapp = function(chord, name, desc)
+      nmapk(new_prefix .. chord, name, desc)
     end
     require('which-key').register {
       [prefix] = { name = '[I]nvestigating', _ = 'which_key_ignore' },
       [new_prefix] = { name = '[L]atex', _ = 'which_key_ignore' },
       [new_prefix .. 'p'] = { name = '[P]rocess', _ = 'which_key_ignore' },
     }
-    mapkey_p('i', 'info', '[I]nfo')
-    mapkey_p('l', 'compile', 'compi[L]e')
-    mapkey_p('v', 'view', '[V]iew')
-    mapkey_p('pk', 'stop', '[K]ill')
-    mapkey_p('ps', 'status', '[S]tatus')
-    mapkey_p('c', 'clean', '[C]lean')
-    mapkey_p('pr', 'reload', '[R]eload')
-    mapkey_p('pt', 'toc-toggle', 'Toggle [T]able of contents')
+    xmapp('e', 'env-surround-visual', 'Add [E]nvironment around')
+    nmapp('e', 'env-surround-line', 'Add [E]nvironment around line')
+    nmapp('i', 'info', '[I]nfo')
+    nmapp('l', 'compile', 'compi[L]e')
+    nmapp('v', 'view', '[V]iew')
+    nmapp('pk', 'stop', '[K]ill')
+    nmapp('ps', 'status', '[S]tatus')
+    nmapp('c', 'clean', '[C]lean')
+    nmapp('pr', 'reload', '[R]eload')
+    nmapp('pt', 'toc-toggle', 'Toggle [T]able of contents')
   end,
 }
