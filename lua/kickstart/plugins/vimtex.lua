@@ -1,28 +1,30 @@
-local tele_find = function()
-  local line = vim.api.nvim_get_current_line()
-  local cpos = vim.fn.getpos '.' -- current cursorpos
-  local pos = cpos[3] -- select col value
-  local left = string.sub(line, 1, pos)
-  local left_i = string.find(left, '[/{][^/}]*$')
-  local right_i = string.find(line, '[/}]', pos)
-  vim.print(left_i, right_i)
-  if left_i and right_i and right_i > left_i + 1 then
-    local ref_braced = string.sub(line, left_i, right_i)
-    require('telescope.builtin').grep_string {
-      search = '\\label' .. ref_braced,
-    }
-  else
-    vim.print 'Cannot find reference to search'
-  end
-end
--- I used this as starter: https://github.com/lervag/vimtex?tab=readme-ov-file#installation
--- TODO: Some investigation is needed to figure out why tabstop=8 for tex files
 return {
   'lervag/vimtex',
-  lazy = false, -- we don't want to lazy load VimTeX
-  -- tag = "v2.15", -- uncomment to pin to a specific release
+  lazy = true,
+  ft = 'tex', -- laod ony on tex
   init = function()
     -- the init runs before the plugin loads
+    local tele_find = function()
+      local line = vim.api.nvim_get_current_line()
+      local cpos = vim.fn.getpos '.' -- current cursorpos
+      local pos = cpos[3] -- select col value
+      local left = string.sub(line, 1, pos)
+      local left_i = string.find(left, '[/{][^/}]*$')
+      local right_i = string.find(line, '[/}]', pos)
+      vim.print(left_i, right_i)
+      if left_i and right_i and right_i > left_i + 1 then
+        local ref_braced = string.sub(line, left_i, right_i)
+        require('telescope.builtin').grep_string {
+          search = '\\label' .. ref_braced,
+        }
+      else
+        vim.print 'Cannot find reference to search'
+      end
+    end
+    -- I used this as starter: https://github.com/lervag/vimtex?tab=readme-ov-file#installation
+    -- TODO: Some investigation is needed to figure out why tabstop=8 for tex files
+    --
+    -- a command to help with navigation
     vim.api.nvim_create_autocmd({ 'Filetype' }, {
       pattern = 'tex',
       callback = function()
@@ -30,6 +32,7 @@ return {
       end,
     })
 
+    -- general setup
     vim.g.vimtex_compiler_latexmk = {
       aux_dir = 'out',
       out_dir = 'out',
@@ -42,6 +45,8 @@ return {
         '-file-line-error',
         '-synctex=1',
         '-interaction=nonstopmode',
+        -- for svg rendering
+        '-latexoption="-write18 -shell-escape -f"',
       },
     }
     vim.g.vimtex_view_method = 'skim'
