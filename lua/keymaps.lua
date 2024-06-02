@@ -1,7 +1,6 @@
 -- NOTE: Start my choices
-vim.keymap.set({ 'n', 'v', 'i' }, '<C-s>', '<cmd>w<cr>', { desc = 'Save current [W]indow' })
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-s>', '<esc><cmd>w<cr>', { desc = 'Save current [W]indow' })
 -- TODO: These session entries should really use the MiniSessions.select() api etc
-vim.keymap.set('n', '<leader>ws', '<cmd>mks!<cr>', { desc = '[S]ave session' })
 vim.keymap.set('n', '<leader>wq', '<cmd>wa|mks!|qa<cr>', { desc = 'Save session and [Q]uit' })
 vim.keymap.set('n', '<leader>wX', '<cmd>wa|qa<cr>', { desc = 'Save files, not session and e[X]it' })
 vim.keymap.set('n', '<leader>wl', '<cmd>so Session.vim<cr>', { desc = '[L]oad session' })

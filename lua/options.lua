@@ -13,6 +13,10 @@ vim.o.exrc = true
 vim.o.hlsearch = false
 -- rely on treesitter for syntax colouring
 vim.o.syntax = 'off'
+vim.o.spell = true
+vim.o.spelloptions = 'camel,noplainbuffer'
+vim.o.foldmethod = 'indent'
+vim.o.foldenable = false
 --NOTE: End my choices
 
 -- Make line numbers default

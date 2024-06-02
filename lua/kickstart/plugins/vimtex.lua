@@ -96,6 +96,6 @@ return {
     nmapp('ps', 'status', '[S]tatus')
     nmapp('c', 'clean', '[C]lean')
     nmapp('pr', 'reload', '[R]eload')
-    nmapp('pt', 'toc-toggle', 'Toggle [T]able of contents')
+    nmapp('t', 'toc-toggle', 'Toggle [T]able of contents')
   end,
 }
