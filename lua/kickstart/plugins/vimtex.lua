@@ -82,10 +82,13 @@ return {
     local nmapp = function(chord, name, desc)
       nmapk(new_prefix .. chord, name, desc)
     end
-    require('which-key').register {
-      [prefix] = { name = '[I]nvestigating', _ = 'which_key_ignore' },
-      [new_prefix] = { name = '[L]atex', _ = 'which_key_ignore' },
-      [new_prefix .. 'p'] = { name = '[P]rocess', _ = 'which_key_ignore' },
+    require('which-key').add {
+      { '<localleader>i', group = '[I]nvestigating' },
+      { '<localleader>i_', hidden = true },
+      { '<localleader>l', group = '[L]atex' },
+      { '<localleader>l_', hidden = true },
+      { '<localleader>lp', group = '[P]rocess' },
+      { '<localleader>lp_', hidden = true },
     }
     xmapp('e', 'env-surround-visual', 'Add [E]nvironment around')
     nmapp('e', 'env-surround-line', 'Add [E]nvironment around line')
