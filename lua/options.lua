@@ -3,7 +3,7 @@
 -- NOTE: Press K to see help on an option
 
 vim.o.guicursor = 'n-v:hor50,i-o:ver50'
-vim.o.cursorline = false
+vim.o.cursorline = true
 vim.opt.timeoutlen = 400
 vim.o.linebreak = true
 vim.o.tabstop = 4
