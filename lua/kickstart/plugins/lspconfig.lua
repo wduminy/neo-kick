@@ -160,13 +160,15 @@ return {
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        rust_analyzer = {
-          ['rust-analyzer'] = {
-            checkOnSave = {
-              command = 'clippy',
-            },
-          },
-        },
+        -- https://github.com/mrcjkb/rustaceanvim suggests I must not make
+        -- any rust changes
+        -- rust_analyzer = {
+        --   ['rust-analyzer'] = {
+        --     checkOnSave = {
+        --       command = 'clippy',
+        --     },
+        --   },
+        -- },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
