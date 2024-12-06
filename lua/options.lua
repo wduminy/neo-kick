@@ -13,6 +13,7 @@ vim.o.hlsearch = false
 vim.o.syntax = 'off'
 vim.o.spell = true
 vim.o.spelloptions = 'camel,noplainbuffer'
+vim.o.spellfile = '/Users/willemduminy/.config/nvim/spell/en.utf-8.add'
 vim.o.foldmethod = 'indent'
 vim.o.foldenable = false
 -- Make line numbers default

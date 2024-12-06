@@ -1,8 +1,8 @@
 -- NOTE: You can add your own plugins here or in other files in this directory!
 --
--- https://github.com/catppuccin/nvim?tab=readme-ov-file
 return {
   {
+    -- https://github.com/catppuccin/nvim?tab=readme-ov-file
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -16,6 +16,21 @@ return {
             Comment = { fg = colors.sky },
           }
         end,
+      }
+    end,
+  },
+  {
+    -- https://github.com/saecki/crates.nvim
+    'saecki/crates.nvim',
+    event = { 'BufRead Cargo.toml' },
+    config = function()
+      require('crates').setup {
+        lsp = {
+          enabled = true,
+          actions = true,
+          completion = true,
+          hover = true,
+        },
       }
     end,
   },
