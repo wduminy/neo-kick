@@ -28,10 +28,10 @@ require('lazy').setup({
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
   -- NOTE: my additions start; i do not use this method anymore
+  -- rather add to custom folder
   require 'kickstart.plugins.vimtex',
   require 'kickstart/plugins/treesitter',
   require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.rustacean',
   -- NOTE: my additions end
   require 'kickstart/plugins/gitsigns',
 
