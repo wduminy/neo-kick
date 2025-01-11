@@ -1,4 +1,4 @@
--- NOTE: You can add your own plugins here of just add files in this directory
+-- NOTE: You can add your own plugins here or just add files in this directory
 return {
   {
     -- https://github.com/catppuccin/nvim?tab=readme-ov-file
@@ -10,9 +10,9 @@ return {
     end,
     config = function()
       require('catppuccin').setup {
-        custom_highlights = function(colors)
+        custom_highlights = function(_colors)
           return {
-            Comment = { fg = colors.sky },
+            --            Comment = { fg = colors.sky },
           }
         end,
       }
