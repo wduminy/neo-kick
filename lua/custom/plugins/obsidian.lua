@@ -24,7 +24,7 @@ return {
     workspaces = {
       {
         name = 'second brain',
-        path = '/Users/willemduminy/Library/Mobile Documents/com~apple~CloudDocs/obsidian/sb',
+        path = '~/Documents/sb',
       },
     },
     daily_notes = {
