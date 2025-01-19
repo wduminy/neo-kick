@@ -7,7 +7,9 @@ vim.keymap.set('n', '[q', '<cmd>:cprev<cr>', { desc = 'Previous in quicklist' })
 vim.keymap.set('n', ']q', '<cmd>:cnext<cr>', { desc = 'Next in quicklist' })
 vim.keymap.set('n', '[t', '<cmd>:tabprev<cr>', { desc = 'Previous tab' })
 vim.keymap.set('n', ']t', '<cmd>:tabnext<cr>', { desc = 'Next tab' })
-
+vim.keymap.set('n', '<C-S>', '<cmd>:wall<cr>', { desc = 'Save all files' })
+vim.keymap.set('n', '<C-W>c', '<cmd>:bdelete<cr>', { desc = '[C]lose buffer' })
+vim.keymap.set('i', '<C-S>', '<esc><cmd>:wall<cr>', { desc = 'Save all files' })
 --  See `:help lua-guide-autocommands`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',

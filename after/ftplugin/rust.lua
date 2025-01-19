@@ -13,7 +13,7 @@ local bufnr = vim.api.nvim_get_current_buf()
 --   vim.cmd.RustLsp { 'hover', 'actions' }
 -- end, { silent = true, buffer = bufnr, desc = 'Rust actions' })
 
-vim.keymap.set('n', '<leader>cd', function()
+vim.keymap.set('n', '<leader>c<C-D>', function()
   vim.cmd.RustLsp { 'openDocs' }
 end, { buffer = bufnr, desc = 'Open the docrs documentation' })
 -- supports rust-analyzer's grouping
